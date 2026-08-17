@@ -24,7 +24,7 @@ Bureuaucrat& Bureuaucrat::operator=(const Bureuaucrat& copy){
     return *this;
 }
 Bureuaucrat::~Bureuaucrat(){
-    std::cout << "Bureuaucrat destructor called." << std::endl;
+    std::cout << "Bureuaucrat " << this->name << " destructor called." << std::endl;
 }
 
 const std::string& Bureuaucrat::getName() const{
@@ -58,7 +58,7 @@ const char* Bureuaucrat::GradeTooLowException::what() const throw(){
 
 
 std::ostream &operator<<(std::ostream &os, const Bureuaucrat &bureuaucrat){
-    os << bureuaucrat.getName() << ", bureucrat grade "
+    os << bureuaucrat.getName() << ", bureaucrat grade "
          << bureuaucrat.getGrade() << ".";
         return os;
 }
