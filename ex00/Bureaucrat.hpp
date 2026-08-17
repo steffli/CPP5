@@ -19,8 +19,8 @@ class Bureuaucrat{
     ~Bureuaucrat();
     
     //public member functions
-    std::string getName();
-    int getGrade();
+    const std::string& getName() const;
+    int getGrade() const;
     void increaseGrade();
     void decreaseGrade();
 
