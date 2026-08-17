@@ -1,28 +1,39 @@
+#pragma once
+
 #include <string>
 #include <iostream>
 #include <exception>
 
-class exception{
-    public:
-        exception();
-        exception(const exception&);
-        exception& operator=(const exception&);
-        virtual ~exception();
-        virtual const char* what();
-};
 
-class Bureuaucrat : public exception{
+class Bureuaucrat{
     private:
-        std::string name;
+        const std::string name;
         int grade;
-    public:
-        Bureuaucrat();
-        Bureuaucrat(int grade);
-        Bureuaucrat& operator=(const Bureuaucrat& copy);
-        ~Bureuaucrat();
 
-        std::string getName();
-        int getGrade();
-        void increaseGrade();
-        void decreseGrade();
+    public:
+    //Default Constructor and Destructor, Canonical Form
+    Bureuaucrat();
+    Bureuaucrat(const std::string& name, int grade);
+    Bureuaucrat(const Bureuaucrat& copy);
+    Bureuaucrat& operator=(const Bureuaucrat& copy);
+    ~Bureuaucrat();
+    
+    //public member functions
+    std::string getName();
+    int getGrade();
+    void increaseGrade();
+    void decreaseGrade();
+
+    //Custom exception classes: due to inherihance it just picks the right exception
+    class GradeTooHighException : public std::exception{
+        public:
+            const char *what() const throw();
+    };
+    class GradeTooLowException : public std::exception{
+        public:
+            const char *what() const throw();
+    };
 };
+
+std::ostream &operator<<(std::ostream &os, const Bureuaucrat &bureuaucrat);
+
