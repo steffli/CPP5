@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat() : name("Default"), grade(150){
     std::cout << "Default constructor called." << std::endl;
@@ -47,8 +48,15 @@ void Bureaucrat::decreaseGrade(){
         this->grade++;
 }
 
-void Bureuaucrat::signForm(){
-
+void Bureaucrat::signForm(Form &form){
+    try {
+        form.beSigned(*this);
+        std::cout << this->name << " signed " << form.getName() << std::endl;
+    }
+    catch (std::exception &e) {
+        std::cout << this->name << " couldn't sign " << form.getName()
+                  << " because " << e.what() << std::endl;
+    }
 }
 
 

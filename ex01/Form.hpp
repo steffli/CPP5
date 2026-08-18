@@ -1,6 +1,8 @@
-#include <string>
-#include <stdbool.h>
+#pragma once
+
+
 #include "Bureaucrat.hpp"
+#include <string>
 
 
 class Form{
@@ -18,13 +20,15 @@ class Form{
         ~Form();
 
         void beSigned(const Bureaucrat &bereaucrat);
+        const std::string& getName() const;
+        int getSignGrade() const;
 
-        class GradeTooHighException{
+        class GradeTooHighException : public std::exception{
             public:
                 const char *what() const throw();
         };
 
-        class GradeTooLowException{
+        class GradeTooLowException : public std::exception{
             public:
                 const char *what() const throw();
         };

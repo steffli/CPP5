@@ -3,7 +3,8 @@
 #include <string>
 #include <iostream>
 #include <exception>
-#include "Form.hpp"
+
+class Form;
 
 
 class Bureaucrat{
@@ -25,7 +26,7 @@ class Bureaucrat{
     void increaseGrade();
     void decreaseGrade();
 
-    void signForm(const Form &form);
+    void signForm(Form &form);
 
     //Custom exception classes: due to inherihance it just picks the right exception
     class GradeTooHighException : public std::exception{
