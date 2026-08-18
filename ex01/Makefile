@@ -1,6 +1,6 @@
-NAME = Bureuaucrat
+NAME = Form
 
-SRC =  Bureuaucrat.cpp main.cpp
+SRC =  Bureuaucrat.cpp main.cpp Form.cpp
 
 CPP = c++
 
