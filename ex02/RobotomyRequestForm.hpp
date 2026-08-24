@@ -1,5 +1,4 @@
-#ifndef ROBOTOMYREQUESTFORM_HPP
-#define ROBOTOMYREQUESTFORM_HPP
+#pragma once
 
 #include "AForm.hpp"
 #include <cstdlib>
@@ -17,4 +16,4 @@ class RobotomyRequestForm : public AForm{
         virtual void execute(const Bureaucrat &executor) const;
 };
 
-#endif
+

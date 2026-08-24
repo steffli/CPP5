@@ -1,5 +1,4 @@
-#ifndef SHRUBBERYCREATIONFORM_HPP
-#define SHRUBBERYCREATIONFORM_HPP
+#pragma once
 
 #include "AForm.hpp"
 #include <fstream>
@@ -17,4 +16,4 @@ class ShrubberyCreationForm : public AForm{
         virtual void execute(const Bureaucrat &executor) const;
 };
 
-#endif
+
