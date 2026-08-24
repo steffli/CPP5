@@ -10,7 +10,7 @@ RobotomyRequestForm::RobotomyRequestForm(const std::string& target) : AForm (tar
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& copy) : AForm(copy){
     std::cout << "RobotomyRequestForm " << this->name << " constructor called." << std::endl;
-};
+}
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& copy){
     std::cout << "RobotomyRequestForm copy asignment operator called." << std::endl;

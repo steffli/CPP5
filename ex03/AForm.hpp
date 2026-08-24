@@ -3,6 +3,7 @@
 #include "Bureaucrat.hpp"
 #include <string>
 #include <iostream>
+#include <exception>
 
 
 class AForm{
@@ -43,3 +44,5 @@ class AForm{
         };
 };
 std::ostream &operator<<(std::ostream &os, const AForm &AForm);
+
+

@@ -15,7 +15,7 @@ Bureaucrat::Bureaucrat(const std::string& name, int grade) : name(name){
     std::cout << "Bureaucrat " << this->name << " constructor called." << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& copy) : name(copy.name), grade(copy.grade){};
+Bureaucrat::Bureaucrat(const Bureaucrat& copy) : name(copy.name), grade(copy.grade){}
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& copy){
     std::cout << "Bureaucrat copy asignment operator called." << std::endl;
@@ -48,7 +48,7 @@ void Bureaucrat::decreaseGrade(){
         this->grade++;
 }
 
-void Bureaucrat::signAForm(AForm &AForm){
+void Bureaucrat::signForm(AForm &AForm){
     try {
         AForm.beSigned(*this);
         std::cout << this->name << " signed " << AForm.getName() << std::endl;
