@@ -1,8 +1,8 @@
 #pragma once
 
-
 #include "Bureaucrat.hpp"
 #include <string>
+#include <iostream>
 
 
 class AForm{
