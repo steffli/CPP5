@@ -1,6 +1,7 @@
 #pragma once
 
 #include "AForm.hpp"
+#include <cstdlib>
 
 class RobotomyRequestForm : public AForm{
 
@@ -12,7 +13,5 @@ class RobotomyRequestForm : public AForm{
         RobotomyRequestForm& operator=(const RobotomyRequestForm& copy);
         ~RobotomyRequestForm();
         
-        //public member functions
-        const std::string& getName() const;
-        int getGrade() const;
+        virtual void execute(const Bureaucrat &executor) const;
 };

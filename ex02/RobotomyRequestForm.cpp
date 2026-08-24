@@ -22,3 +22,17 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& c
 RobotomyRequestForm::~RobotomyRequestForm(){
     std::cout << "RobotomyRequestForm " << this->name << " destructor called." << std::endl;
 }
+
+
+void RobotomyRequestForm::execute(const Bureaucrat &executor) const{
+    if(!this->is_Signed)
+        throw AForm::FormNotSignedException();
+    if (executor.getGrade() > grade_exec)
+        throw AForm::GradeTooLowException();
+    std::cout << "* drilling noises *" << std::endl;
+    if (std::rand() % 2 == 0)
+        std::cout << this->getName() << " had been robotomozed successfully" << std::endl;
+    else{
+        std::cout << this->getName() << " robotomization failed." << std::endl;
+    }
+}

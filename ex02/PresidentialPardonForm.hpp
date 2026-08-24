@@ -11,7 +11,6 @@ class PresidentialPardonForm : public AForm{
         PresidentialPardonForm& operator=(const PresidentialPardonForm& copy);
         ~PresidentialPardonForm();
         
-        //public member functions
         virtual void execute(const Bureaucrat &executor) const;
 
 };

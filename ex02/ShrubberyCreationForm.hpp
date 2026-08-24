@@ -1,6 +1,7 @@
 #pragma once
 
 #include "AForm.hpp"
+#include <fstream>
 
 
 class ShrubberyCreationForm : public AForm{
@@ -11,8 +12,6 @@ class ShrubberyCreationForm : public AForm{
         ShrubberyCreationForm(const ShrubberyCreationForm& copy);
         ShrubberyCreationForm& operator=(const ShrubberyCreationForm& copy);
         ~ShrubberyCreationForm();
-        
-        //public member functions
-        const std::string& getName() const;
-        int getGrade() const;
+
+        virtual void execute(const Bureaucrat &executor) const;
 };

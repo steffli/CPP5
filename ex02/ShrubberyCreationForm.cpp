@@ -22,3 +22,23 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 ShrubberyCreationForm::~ShrubberyCreationForm(){
     std::cout << "ShrubberyCreationForm " << this->name << " destructor called." << std::endl;
 }
+
+void ShrubberyCreationForm::execute(const Bureaucrat &executor) const{
+    if(!this->is_Signed)
+        throw AForm::FormNotSignedException();
+    if (executor.getGrade() > grade_exec)
+        throw AForm::GradeTooLowException();
+    std::string filename = this->getName() + "_shrubbery";
+    std::ofstream file(filename.c_str());
+    if (!file.is_open())
+    {
+        std::cerr << "Error: could not open " << filename << std::endl;
+        return ;
+    }
+    file << "  /\\" << std::endl;
+    file << " /  \\" << std::endl;
+    file << "/____\\" << std::endl;
+    file << "  ||" << std::endl;
+    file.close();
+    std::cout << "Shrubbery written to " << filename << std::endl;
+}
