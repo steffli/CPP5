@@ -6,7 +6,7 @@
 
 
 class AForm{
-    private:
+    protected:
         const std::string name;
         bool is_Signed;
         const int grade_sign;

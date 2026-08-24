@@ -1,25 +1,21 @@
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm() : name("Default"), grade(150){
-    std::cout << "Default constructor called." << std::endl;
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm("Default", false, 145, 137){
+    std::cout << "Shrubbery constructor called." << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string& name, int grade) : name(name){
-
-    if (grade < 1)
-        throw GradeTooHighException();
-    if (grade > 150)
-        throw GradeTooLowException();
-    this->grade = grade;
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm(target, false, 145, 137){
     std::cout << "ShrubberyCreationForm " << this->name << " constructor called." << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy) : name(copy.name), grade(copy.grade){};
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy) : AForm(copy){
+    std::cout << "ShrubberyCreationForm copy constructor called." << std::endl;
+};
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& copy){
     std::cout << "ShrubberyCreationForm copy asignment operator called." << std::endl;
     if(this != &copy){
-        this->grade = copy.grade;
+        AForm::operator=(copy);
     }
     return *this;
 }
