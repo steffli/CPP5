@@ -1,4 +1,5 @@
 #include "ShrubberyCreationForm.hpp"
+#include <stdexcept>
 
 ShrubberyCreationForm::ShrubberyCreationForm() : AForm("Default", false, 145, 137){
     std::cout << "Shrubbery constructor called." << std::endl;
@@ -10,7 +11,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm(
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy) : AForm(copy){
     std::cout << "ShrubberyCreationForm copy constructor called." << std::endl;
-};
+}
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& copy){
     std::cout << "ShrubberyCreationForm copy asignment operator called." << std::endl;
@@ -32,8 +33,7 @@ void ShrubberyCreationForm::execute(const Bureaucrat &executor) const{
     std::ofstream file(filename.c_str());
     if (!file.is_open())
     {
-        std::cerr << "Error: could not open " << filename << std::endl;
-        return ;
+        throw std::runtime_error("Could not open " + filename);
     }
     file << "  /\\" << std::endl;
     file << " /  \\" << std::endl;

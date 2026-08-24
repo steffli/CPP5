@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BUREAUCRAT_HPP
+#define BUREAUCRAT_HPP
 
 #include <string>
 #include <iostream>
@@ -26,7 +27,7 @@ class Bureaucrat{
         void increaseGrade();
         void decreaseGrade();
 
-        void signAForm(AForm &AForm);
+        void signForm(AForm &AForm);
         void executeForm(const AForm &AForm);
 
         //Custom exception classes: due to inherihance it just picks the right exception
@@ -41,4 +42,6 @@ class Bureaucrat{
 };
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &Bureaucrat);
+
+#endif
 

@@ -6,19 +6,17 @@ AForm::AForm() : name("Default"), is_Signed(false), grade_sign(150), grade_exec(
 }
 
 AForm::AForm(const std::string& name, bool is_Signed, int grade_req, int grade_exec):
-             name(name), is_Signed(false), grade_sign(grade_req), grade_exec(grade_exec)
+             name(name), is_Signed(is_Signed), grade_sign(grade_req), grade_exec(grade_exec)
 {
-    if (grade_exec < 1)
+    if (grade_req < 1 || grade_exec < 1)
         throw GradeTooHighException();
-    else if (grade_exec > grade_sign || grade_exec > 150)
+    else if (grade_req > 150 || grade_exec > 150)
         throw GradeTooLowException();
-    else if (grade_exec < grade_sign)
-        is_Signed = true;
     std::cout << "AForm " << this->name << " constructor called." << std::endl;
 }
 
 AForm::AForm(const AForm &copy):name(copy.name), is_Signed(copy.is_Signed), 
-            grade_sign(copy.grade_sign), grade_exec(copy.grade_exec){};
+            grade_sign(copy.grade_sign), grade_exec(copy.grade_exec){}
 
 AForm& AForm::operator=(const AForm& copy){
     std::cout << "AForm copy assignment " << std::endl;
@@ -69,4 +67,11 @@ const char* AForm::GradeTooLowException::what() const throw(){
 
 const char* AForm::FormNotSignedException::what() const throw(){
     return "Form not signed!";
+}
+
+std::ostream &operator<<(std::ostream &os, const AForm &AForm){
+    os << AForm.getName() << ", signed: " << (AForm.getIsSigned() ? "yes" : "no")
+         << ", sign grade: " << AForm.getSignGrade()
+         << ", exec grade: " << AForm.getExecGrade() << ".";
+        return os;
 }

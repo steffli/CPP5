@@ -9,8 +9,8 @@ RobotomyRequestForm::RobotomyRequestForm(const std::string& target) : AForm (tar
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& copy) : AForm(copy){
-    std::cout << "RobotomyRequestForm" << this->name << " constructor called." << std::endl;
-};
+    std::cout << "RobotomyRequestForm " << this->name << " constructor called." << std::endl;
+}
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& copy){
     std::cout << "RobotomyRequestForm copy asignment operator called." << std::endl;
@@ -31,7 +31,7 @@ void RobotomyRequestForm::execute(const Bureaucrat &executor) const{
         throw AForm::GradeTooLowException();
     std::cout << "* drilling noises *" << std::endl;
     if (std::rand() % 2 == 0)
-        std::cout << this->getName() << " had been robotomozed successfully" << std::endl;
+        std::cout << this->getName() << " has been robotomized successfully." << std::endl;
     else{
         std::cout << this->getName() << " robotomization failed." << std::endl;
     }
