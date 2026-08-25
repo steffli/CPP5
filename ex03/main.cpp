@@ -3,6 +3,7 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 #include <ctime>
 #include <fstream>
 
@@ -24,7 +25,7 @@ int main(){
     try{
         ShrubberyCreationForm shrub("garden");
         Bureaucrat Bob("Bob", 1);
-        Bob.signAForm(shrub);
+        Bob.signForm(shrub);
         Bob.executeForm(shrub);   // creates garden_shrubbery
 
         // read the generated file back so the tree is visible on screen
@@ -48,7 +49,7 @@ int main(){
     try{
         RobotomyRequestForm robot("R2D2");
         Bureaucrat Intern("Intern", 150);
-        Intern.signAForm(robot);  // fails to sign (needs 72)
+        Intern.signForm(robot);  // fails to sign (needs 72)
         Intern.executeForm(robot); // fails
     }
     catch (std::exception &e){
@@ -59,7 +60,7 @@ int main(){
     try{
         RobotomyRequestForm robot("R2D2");
         Bureaucrat Boss("Boss", 1);
-        Boss.signAForm(robot);
+        Boss.signForm(robot);
         Boss.executeForm(robot);
         Boss.executeForm(robot);
         Boss.executeForm(robot);
@@ -72,7 +73,7 @@ int main(){
     try{
         PresidentialPardonForm pardon("Ford Prefect");
         Bureaucrat Director("Director", 1);
-        Director.signAForm(pardon);
+        Director.signForm(pardon);
         Director.executeForm(pardon);
     }
     catch (std::exception &e){
@@ -83,7 +84,7 @@ int main(){
     try{
         PresidentialPardonForm pardon("Ford Prefect");
         Bureaucrat Clerk("Clerk", 20);   // can sign (25) but not execute (5)
-        Clerk.signAForm(pardon);
+        Clerk.signForm(pardon);
         Clerk.executeForm(pardon);
     }
     catch (std::exception &e){
@@ -94,7 +95,7 @@ int main(){
     try{
         ShrubberyCreationForm shrub("garden");
         Bureaucrat Peon("Peon", 140);   // 140 <= 145: signs; 140 > 137: cannot execute
-        Peon.signAForm(shrub);
+        Peon.signForm(shrub);
         shrub.execute(Peon);            // GradeTooLowException caught below
     }
     catch (std::exception &e){
@@ -107,12 +108,48 @@ int main(){
         RobotomyRequestForm robot("R2D2");
         PresidentialPardonForm pardon("Ford Prefect");
         Bureaucrat Boss("Boss", 1);
-        Boss.signAForm(shrub);
+        Boss.signForm(shrub);
         Boss.executeForm(shrub);
-        Boss.signAForm(robot);
+        Boss.signForm(robot);
         Boss.executeForm(robot);
-        Boss.signAForm(pardon);
+        Boss.signForm(pardon);
         Boss.executeForm(pardon);
+    }
+    catch (std::exception &e){
+        std::cout << "Caught: " << e.what() << std::endl;
+    }
+
+    std::cout << std::endl << "--- Test 9: Intern creates all three forms ---" << std::endl;
+    try{
+        Intern someRandomIntern;
+        Bureaucrat Boss("Boss", 1);
+
+        AForm* shrub = someRandomIntern.makeForm("shrubbery creation", "garden");
+        if (shrub != NULL){
+            Boss.signForm(*shrub);
+            Boss.executeForm(*shrub);
+            delete shrub;
+        }
+
+        AForm* robot = someRandomIntern.makeForm("robotomy request", "Bender");
+        if (robot != NULL){
+            Boss.signForm(*robot);
+            Boss.executeForm(*robot);
+            delete robot;
+        }
+
+        AForm* pardon = someRandomIntern.makeForm("presidential pardon", "Ford Prefect");
+        if (pardon != NULL){
+            Boss.signForm(*pardon);
+            Boss.executeForm(*pardon);
+            delete pardon;
+        }
+
+        AForm* coffee = someRandomIntern.makeForm("coffee request", "office");
+        if (coffee == NULL)
+            std::cout << "makeForm returned NULL for unknown form as expected." << std::endl;
+        else
+            delete coffee;
     }
     catch (std::exception &e){
         std::cout << "Caught: " << e.what() << std::endl;
