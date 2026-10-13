@@ -18,18 +18,24 @@ Intern::~Intern(){
 }
 
 AForm* Intern::makeForm(const std::string& form, const std::string& target) const{
-    if (form == "shrubbery creation"){
-        std::cout << "Intern creates " << form << std::endl;
-        return new ShrubberyCreationForm(target);
+    const std::string names[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
+
+    int type = (names[0] == form) * 1
+             + (names[1] == form) * 2
+             + (names[2] == form) * 3;
+
+    switch (type){
+        case 1:
+            std::cout << "Intern creates " << form << std::endl;
+            return new ShrubberyCreationForm(target);
+        case 2:
+            std::cout << "Intern creates " << form << std::endl;
+            return new RobotomyRequestForm(target);
+        case 3:
+            std::cout << "Intern creates " << form << std::endl;
+            return new PresidentialPardonForm(target);
+        default:
+            std::cout << "Intern failed to create " << form << ": unknown form type" << std::endl;
+            return NULL;
     }
-    else if (form == "robotomy request"){
-        std::cout << "Intern creates " << form << std::endl;
-        return new RobotomyRequestForm(target);
-    }
-    else if (form == "presidential pardon"){
-        std::cout << "Intern creates " << form << std::endl;
-        return new PresidentialPardonForm(target);
-    }
-    std::cout << "Intern failed to create " << form << ": unknown form type" << std::endl;
-    return NULL;
 }
